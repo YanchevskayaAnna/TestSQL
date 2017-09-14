@@ -1,0 +1,11 @@
+CREATE TABLE abonents(
+  abonent_id int NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  abonent_name VARCHAR (20)
+);
+
+INSERT INTO abonents(abonent_name) VALUES ('Yanchevskaya Anna');
+INSERT INTO abonents(abonent_name) VALUES ('Savelyeva Alla');
+INSERT INTO abonents(abonent_name) VALUES ('Krivobok Dmitriy');
+
+SELECT * FROM abonents;
+
