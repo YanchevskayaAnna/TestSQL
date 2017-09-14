@@ -3,8 +3,10 @@ package model;
 /**
  * Created by IT-Univer004 on 14.09.2017.
  */
+@Table (name="abonents")
 public class Abonent {
     private int id;
+    @Column(name = "id")
     private String name;
 
     public Abonent() {
