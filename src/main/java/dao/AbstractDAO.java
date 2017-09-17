@@ -21,10 +21,10 @@ import java.lang.reflect.Type;
  */
 public interface AbstractDAO<E> {
 
-    List<E> getAll();
+    List<E> getAll(Connection connection);
 
     //E getEntityById(Integer id); Old method
-    default E getEntityById(Integer id, Connection connection, Class<E> cls) throws Exception {
+    default E getEntityById(Connection connection, Integer id, Class<E> cls)throws Exception {
         //find the name of the corresponding table in the database
         Table table = cls.getAnnotation(Table.class);
         String tableName = table == null ? cls.getName() + "s": table.name();
@@ -72,9 +72,9 @@ public interface AbstractDAO<E> {
         return null;
      }
 
-    boolean update(E entity);
+    boolean update(Connection connection, E entity);
 
-    boolean create(E entity);
+    boolean create(Connection connection, E entity);
 
     default boolean delete(Connection connection, String tableName, int id) {
         String sqlQuery = "DELETE FROM " + tableName + " WHERE " + tableName.substring(0, tableName.length() - 1) + "_id=?";

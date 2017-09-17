@@ -37,7 +37,7 @@ public class TestAbonentController {
                 properties.getProperty("URL"),
                 properties.getProperty("USER"),
                 properties.getProperty("PASSWORD"));
-        abonentController = new AbonentController(new AbonentDAOImpl(connection));
+        abonentController = new AbonentController(new AbonentDAOImpl(), connection);
     }
 
     @AfterClass

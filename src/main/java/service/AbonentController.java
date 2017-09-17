@@ -12,17 +12,19 @@ import java.util.List;
 public class AbonentController {
 
     private AbonentDAO abonentDAO;
+    private Connection connection;
 
-    public AbonentController(AbonentDAO abonentDAO) {
+    public AbonentController(AbonentDAO abonentDAO, Connection connection) {
         this.abonentDAO = abonentDAO;
+        this.connection = connection;
     }
 
     public List<Abonent> getAllAbonents() {
-        return abonentDAO.getAll();
+        return abonentDAO.getAll(connection);
     }
 
     public Abonent getEntityById(Integer id,  Connection connection) throws Exception  {
-        return abonentDAO.getEntityById(id, connection, Abonent.class);
+        return abonentDAO.getEntityById(connection, id, Abonent.class);
     }
 
 }

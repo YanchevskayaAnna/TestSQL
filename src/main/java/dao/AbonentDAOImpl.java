@@ -12,14 +12,12 @@ import java.sql.*;
  * Created by IT-Univer004 on 14.09.2017.
  */
 public class AbonentDAOImpl implements AbonentDAO {
-    private Connection connection;
 
-    public AbonentDAOImpl(Connection connection) {
-        this.connection = connection;
+    public AbonentDAOImpl() {
     }
 
     @Override
-    public List<Abonent> getAll() {
+    public List<Abonent> getAll(Connection connection) {
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM abonents;");) {
 
@@ -51,11 +49,11 @@ public class AbonentDAOImpl implements AbonentDAO {
 //    }
 
     @Override
-    public boolean update(Abonent entity) {
+    public boolean update(Connection connection, Abonent entity) {
         String sqlQuery = "UPDATE abonents SET abonent_name=? WHERE abonent_id=?";
 
         try {
-            if (getEntityById(entity.getId(), null, Abonent.class) == null) {
+            if (getEntityById(connection, entity.getId(), Abonent.class) == null) {
                 return false;
             }
         } catch (Exception e) {
@@ -77,7 +75,7 @@ public class AbonentDAOImpl implements AbonentDAO {
     }
 
     @Override
-    public boolean create(Abonent entity) {
+    public boolean create(Connection connection, Abonent entity) {
         String sqlQuery = "INSERT INTO abonents (abonent_name) VALUES (?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
