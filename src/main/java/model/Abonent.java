@@ -1,12 +1,12 @@
 package model;
 
-/**
- * Created by IT-Univer004 on 14.09.2017.
- */
 @Table (name="abonents")
 public class Abonent {
-    private int id;
+    @Id
     @Column(name = "id")
+    private int id;
+
+    @Column(name = "name")
     private String name;
 
     public Abonent() {

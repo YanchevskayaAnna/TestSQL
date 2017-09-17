@@ -3,6 +3,7 @@ package service;
 import dao.AbonentDAO;
 import model.Abonent;
 
+import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -18,6 +19,10 @@ public class AbonentController {
 
     public List<Abonent> getAllAbonents() {
         return abonentDAO.getAll();
+    }
+
+    public Abonent getEntityById(Integer id,  Connection connection) throws Exception  {
+        return abonentDAO.getEntityById(id, connection, Abonent.class);
     }
 
 }

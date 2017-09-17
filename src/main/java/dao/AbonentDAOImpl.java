@@ -32,30 +32,34 @@ public class AbonentDAOImpl implements AbonentDAO {
         return null;
     }
 
-    @Override
-    public Abonent getEntityById(Integer id) {
-        Abonent abonent = new Abonent();
-        try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM abonents WHERE abonent_id=" + id + ";")) {
-
-            if (resultSet.next()) {
-                abonent.setId(resultSet.getInt("abonent_id"));
-                abonent.setName(resultSet.getString("abonent_name"));
-                return abonent;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return null;
-    }
+//    @Override
+//    public Abonent getEntityById(Integer id) {
+//        Abonent abonent = new Abonent();
+//        try (Statement statement = connection.createStatement();
+//             ResultSet resultSet = statement.executeQuery("SELECT * FROM abonents WHERE abonent_id=" + id + ";")) {
+//
+//            if (resultSet.next()) {
+//                abonent.setId(resultSet.getInt("abonent_id"));
+//                abonent.setName(resultSet.getString("abonent_name"));
+//                return abonent;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//        return null;
+//    }
 
     @Override
     public boolean update(Abonent entity) {
         String sqlQuery = "UPDATE abonents SET abonent_name=? WHERE abonent_id=?";
 
-        if (getEntityById(entity.getId()) == null) {
-            return false;
+        try {
+            if (getEntityById(entity.getId(), null, Abonent.class) == null) {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {

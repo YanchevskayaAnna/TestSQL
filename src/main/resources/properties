@@ -1,4 +1,4 @@
 
 URL = jdbc:mysql://localhost:3306/Kievstar?autoReconnect=true&useSSL=false&serverTimezone=UTC
 USER = root
-PASSWORD = root
+PASSWORD = root2017

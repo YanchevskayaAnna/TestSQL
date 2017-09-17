@@ -57,4 +57,15 @@ public class TestAbonentController {
         Assert.assertEquals(3, abonentList.size());
     }
 
+    @Test
+    public void getAbonentbiId() {
+        try {
+            Abonent abonent = abonentController.getEntityById(1, connection);
+            Assert.assertNotNull(abonent);
+            Assert.assertEquals("Yanchevskaya Anna", abonent.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
