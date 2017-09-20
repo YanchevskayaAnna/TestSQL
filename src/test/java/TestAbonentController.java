@@ -1,5 +1,5 @@
 
-import dao.AbonentDAOImpl;
+import dao.AbonentDAO;
 import model.Abonent;
 import org.junit.*;
 import service.AbonentController;
@@ -12,14 +12,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 
 
-/**
- * Created by IT-Univer004 on 14.09.2017.
- */
 public class TestAbonentController {
 
     private static final String PROPERTIES_PATH = "src/main/resources/properties";
@@ -37,7 +33,7 @@ public class TestAbonentController {
                 properties.getProperty("URL"),
                 properties.getProperty("USER"),
                 properties.getProperty("PASSWORD"));
-        abonentController = new AbonentController(new AbonentDAOImpl(), connection);
+        abonentController = new AbonentController(new AbonentDAO(connection));
     }
 
     @AfterClass
@@ -60,7 +56,7 @@ public class TestAbonentController {
     @Test
     public void getAbonentbiId() {
         try {
-            Abonent abonent = abonentController.getEntityById(1, connection);
+            Abonent abonent = abonentController.getEntityById(1);
             Assert.assertNotNull(abonent);
             Assert.assertEquals("Yanchevskaya Anna", abonent.getName());
         } catch (Exception e) {

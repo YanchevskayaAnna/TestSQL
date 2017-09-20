@@ -1,22 +1,25 @@
 package model;
 
-@Table (name="abonents")
-public class Abonent {
-    @Id
-    @Column(name = "id")
-    private int id;
+import anotations.Column;
+import anotations.Id;
+import anotations.Table;
 
-    @Column(name = "name")
+@Table(name="abonents")
+public class Abonent {
+    @Id(name = "abonent_id")
+    private Integer id;
+
+    @Column(name = "abonent_name")
     private String name;
 
     public Abonent() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
